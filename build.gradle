@@ -1,0 +1,46 @@
+apply plugin: 'base'
+
+buildscript {
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.1.RELEASE"
+    }
+}
+
+allprojects {
+
+    group = "poc.spring.io"
+
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'spring-boot'
+
+    bootRepackage.enabled = false
+    dependencies {
+        versionManagement 'io.spring.platform:platform-versions:1.0.0.RELEASE@properties'
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    compileJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+        options.encoding = 'UTF-8'
+        options.compilerArgs = ['-XDignore.symbol.file', '-Xlint:unchecked']
+    }
+
+    compileTestJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+        options.encoding = 'UTF-8'
+    }
+
+}
